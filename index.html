@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quebra arquivo de telefones (txt)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- Page Title -->
+    <header>
+        <h1>Divisor de txt</h1>
+    </header>
+    
+    <!-- Main -->
+    <main>
+        <div class="content">
+            <form action="">
+                <label for="file-selector">Selecione um arquivo</label>
+                <input type="file" id="file-selector" accept=".txt" />
+            </form>
+            <ul id="output"></ul>
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="">Github</a></li>
+                <li><a href="">Linkedin</a></li>
+                <li><a href="">Twitter</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- <form action=""><label for=""></label></form>
+    <input type="file" id="file-selector" accept=".txt" />
+    <p id="status"></p>
+    <div>
+      <img id="output" />
+    </div> -->
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- 
+    Cores
+https://flatuicolors.com/palette/ru
+Ref.
+https://developer.mozilla.org/pt-BR/docs/Web/API/FileReader/readAsText
+https://web.dev/read-files/#read-content
+-->
+
+<!-- 
+    LOGICA em python
+
+# lendo as linhas do arquivo e armazenando em telefones
+with open("lista.txt", "r", encoding="utf-8") as arquivo_base:
+    telefones = arquivo_base.readlines()
+
+print('*********************************************')    
+print('Lendo o arquivo lista.txt ...')
+# input('Pressione ENTER caso o nome do arquivo esteja correto...')
+print('\n*********************************************')
+print(f'Sua lista de telefones tem {len(telefones)} números.')
+print('\n*********************************************')
+quebra = int(input('Digite a quantidade de telefones por arquivo: ')) # quantidade de telefones por arquivo
+
+# quebra = 25 # quantidade de telefones por arquivo
+numeros = []
+lista = []
+lista_arquivos = []
+
+for i in range(1, len(telefones) + 1):
+
+    numeros.append(telefones[i-1])
+
+    if(i % quebra == 0):
+        
+        lista.append(numeros)
+        num = int(i/quebra) - 1
+        nome_arquivo = 'telefones' + str(int(i/quebra)) + '.txt' # cria nomes de arquivos
+        # abre o arquivo, grava numeros e fecha o arquivo
+        arquivo = open(nome_arquivo, 'w+')
+        arquivo.writelines(numeros)
+        arquivo.close()
+        # salva lista de nomes de arquivos
+        lista_arquivos.append(nome_arquivo)
+        numeros = []
+
+num += 1
+# ultimo arquivo
+nome_arquivo = 'telefones' + str(num + 1) + '.txt'
+lista_arquivos.append(nome_arquivo)
+lista.append(numeros)
+arquivo = open(nome_arquivo, 'w+')
+arquivo.writelines(numeros)
+arquivo.close()
+
+print(f'A lista foi dividida em {num+1} arquivos.')
+print('\n*********************************************')
+print(f'Os arquivos criados são: ')
+for arq in lista_arquivos:
+    print(arq)
+
+input('\nObrigado. Pressione ENTER para sair...')
+
+ -->
